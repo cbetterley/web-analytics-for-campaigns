@@ -32,11 +32,13 @@ Several data warehouse resources must already be in place to use this approach. 
 
 - Session ID and/or User ID.
 
+- Timestamp.
+
 - Any other filter criteria necessary to identify metrics you want to measure.
 
 See comments in `ab-test-metrics_step1.sql` for further discussion, including suggested metrics.
 
-It is *not* necessary for this table to include test attribution information. In fact, this approach will not use it.
+It is *not* necessary for this table to include test attribution information. In fact, this approach cannot use it.
 
 ## Attribution
 
@@ -44,11 +46,11 @@ When a user is first exposed to a test, that user's first exposure time is recor
 
 Everything that user does between first exposure time and the end of the experiment accrues to that test variant's statistics, no matter where the user behavior occurs.
 
-Any test attribution information attached to the metric event itself is ignored. This is because the user's activity is the source-of-truth for variant membership. This dependency on the user is necessary for calculating P-Value and MDE, since those metrics are based on variance which is in turn based on user-level metric calculations.
+Any test attribution information attached to the metric event itself is ignored. This is because the user's activity is the source-of-truth for variant membership. This dependency on the user is necessary for calculating P-Value and MDE, since those statistics are based on variance which is in turn based on user-level metric calculations.
 
 ## Hypothesis Test
 
-The approach performs a two-tailed hypothesis test with 95% confidence level for difference in proportions between treatment and control.  We use a z-score because we have large sample sizes.  Websites with small daily traffic should consider modifying `ab-test-metrics_step2.r` to use a t-test instead.
+The approach performs a two-tailed hypothesis test with 95% confidence level for difference in proportions between treatment and control.  We use a z-score because we have large sample sizes.  Teams with small daily website traffic should consider modifying `ab-test-metrics_step2.r` to use a t-test instead.
 
 ## Parameters
 
