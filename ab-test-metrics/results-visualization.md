@@ -1,6 +1,6 @@
 # Visualizing AB Test Results
 
-We created a Tableau report to visualize the data in {ab_variant_inference}.  The report consisted of the following:
+We created a Tableau report to visualize the data in {ab_variant_inference} and made it available to all experiment owners, developers, and analysts.  The report consists of the following:
 
 ## Filters
 
@@ -22,7 +22,7 @@ Statistics:  p-value, difference, confidence intervals, MDE (80%), metric value 
 
 Statistically significant metrics are color coded red or green depending on the sign of the difference.
 
-On hover, the audience can read a verbose interpretation of the metrics.  We implemented this using a calculated field with the following formula:
+On hover, the audience can read a verbose interpretation of the metrics (particularly p-value and MDE).  We implemented this using a calculated field with the following formula:
 
 ```
 if [Significant?] = true then
