@@ -73,7 +73,7 @@ insert into {convert_overview_events} (user_id, session_id, date, device_type, r
             ,e.query
             ,e.referrer
             ,'Convert Event Name'::varchar as convert_event
-        from {{convert_logs_source}} e
+        from {convert_logs_source} e
         where 1=1
             and date(e.time) between dateadd(day, {{date_begin_offset}}, current_date) and dateadd(day, {{date_end_offset}}, current_date)
             --Add additional filters as necessary.
